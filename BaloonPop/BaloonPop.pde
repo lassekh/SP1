@@ -17,8 +17,6 @@ void setup() {
 void draw() {
   //Game background color
   background(255);
-  //Gives baloon a random pixel speed between 1 and 5
-  float randomSpeed = random(0, 1);
   //If timer object paramater is reached
   if (t.isFinished()) {
     //add new baloon to ArrayList
@@ -27,6 +25,14 @@ void draw() {
   }
   
   for (Baloon b : baloons) {
+    //Gives baloon a random pixel speed between 1 and 5
+    float randomSpeed = random(2, 3);
+    //GAME OVER if lives are zero
+    if(lives.count == 0){
+        randomSpeed = 0;
+        fill(0);
+        text("GAME OVER!", 100, 100);
+    }
     b.display();
     b.fly(randomSpeed);
   }
@@ -36,18 +42,15 @@ void draw() {
     if(baloons.get(i).outOfBounds() && lives.count > 0){
       baloons.remove(i);
       lives.minus();
-    }else if(lives.count == 0){
-        randomSpeed = 0;
-        text("GAME OVER!", width, height);
     }
   }
-  
+  fill(0);
   text("Points: " + points.count, 10, 10);
   text("Lives: " + lives.count, 10, 20);
-  fill(0);
+  
 }
 
-//This function to utilize event when mouse is pressed
+//This function to do somthing when mouse is pressed
 void mousePressed() {
   //If mousePressed == true
    if (mousePressed) {

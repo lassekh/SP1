@@ -1,19 +1,21 @@
 class Baloon {
-  int baloonW;
-  int baloonH;
-  int baloonSpawnX;
-  int baloonSpawnY;
-  float baloonSpeed;
+  int baloonW; //Baloon width radius
+  int baloonH; //Baloon height radius
+  int baloonSpawnX; //New Baloon spawn point at X-axis
+  int baloonSpawnY; //New Baloon spawn point at Y-axis
+  float baloonSpeed; //The pixel speed at which a Baloon moves
 
   Baloon() {
     baloonW = 20; //Width radius - half
     baloonH = 30; //Height radius - half
-    baloonSpawnY = height+baloonH;
-    baloonSpawnX = int(random(width));
+    baloonSpawnY = height+baloonH; //Spawn just below game window
+    baloonSpawnX = int(random(width)); //Spawn at a random point on X-axis
   }
   
   void display() {
+    fill(255, 0, 0);
     ellipse(baloonSpawnX, baloonSpawnY, baloonW*2, baloonH*2);
+    triangle(baloonSpawnX, baloonSpawnY+baloonH, baloonSpawnX+baloonW/3, baloonSpawnY+baloonH+baloonW/2, baloonSpawnX-baloonW/3, baloonSpawnY+baloonH+baloonW/2);
   }
   
   void fly(float speed) {
